@@ -35,7 +35,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
           # Check and commit CSV files
-          if [ -n "$(git status --porcelain *.csv)" ]; then
+          if [ "$(git status --porcelain '*.csv')" ]; then
             git add *.csv
             git commit -m "Add/update CSV files"
             git push
