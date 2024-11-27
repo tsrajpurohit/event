@@ -3,11 +3,13 @@ name: Run Promotors Script
 on:
   schedule:
     # Run every day at 10 PM IST, Monday to Friday
-    - cron: '30 16 * * 1-5'  # This cron schedule runs at 4:30 PM UTC, which is 10:00 PM IST, Monday to Friday
+    - cron: '30 16 * * 1-5'  # 4:30 PM UTC = 10:00 PM IST, Mon-Fri
+  workflow_dispatch:  # Allows manual trigger of the workflow
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,20 +25,19 @@ jobs:
 
       - name: Run script
         env:
-          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}  # Ensure this matches the secret's name in GitHub
-        run: python event.py  # Ensure the path to the script is correct
+          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}  # Ensure this matches the GitHub secret
+          SHEET_ID: ${{ secrets.SHEET_ID }}  # Set the Sheet ID as a GitHub secret
+        run: python event.py  # Ensure the script path is correct
 
-      - name: Commit and push CSV file
+      - name: Commit and push CSV files
         run: |
-          # Add and commit the CSV file if it was created
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-          # Check if the CSV file exists and add it to the commit
-          if [ -f "nse_filtered_data.csv" ]; then
-            git add nse_filtered_data.csv
-            git commit -m "Add filtered data CSV file"
+          # Check and commit CSV files
+          if [ -n "$(git status --porcelain *.csv)" ]; then
+            git add *.csv
+            git commit -m "Add/update CSV files"
             git push
           else
-            echo "CSV file not found. No changes to commit."
-          fi
+            echo "No CSV files to commit."
