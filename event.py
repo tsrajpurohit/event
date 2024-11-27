@@ -3,14 +3,19 @@ import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
 import os
+import json
 
-# Define paths and credentials
-CREDENTIALS_FILE = os.getenv("CREDENTIALS_FILE", "path/to/Credentials.json")
+# Fetch credentials and Sheet ID from environment variables
+credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')  # JSON string
 SHEET_ID = os.getenv("SHEET_ID", "your_google_sheet_id")
 
-# Authenticate and connect to Google Sheets
-credentials = Credentials.from_service_account_file(
-    CREDENTIALS_FILE,
+if not credentials_json:
+    raise ValueError("GOOGLE_SHEETS_CREDENTIALS environment variable is not set.")
+
+# Authenticate using the JSON string from environment
+credentials_info = json.loads(credentials_json)
+credentials = Credentials.from_service_account_info(
+    credentials_info,
     scopes=["https://www.googleapis.com/auth/spreadsheets"]
 )
 client = gspread.authorize(credentials)
