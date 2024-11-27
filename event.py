@@ -7,7 +7,7 @@ import json
 
 # Fetch credentials and Sheet ID from environment variables
 credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')  # JSON string
-SHEET_ID = os.getenv("SHEET_ID", "your_google_sheet_id")
+SHEET_ID = "1IUChF0UFKMqVLxTI69lXBi-g48f-oTYqI1K9miipKgY"
 
 if not credentials_json:
     raise ValueError("GOOGLE_SHEETS_CREDENTIALS environment variable is not set.")
