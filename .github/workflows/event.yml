@@ -40,4 +40,5 @@ jobs:
             git push
           else
             echo "CSV file not found. No changes to commit."
+            fi
         
