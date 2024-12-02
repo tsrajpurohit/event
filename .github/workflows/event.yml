@@ -1,4 +1,4 @@
-name: Run Promotors Script
+name: Run event Script
 
 on:
   schedule:
