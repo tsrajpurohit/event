@@ -1,8 +1,4 @@
 symbol,company,purpose,bm_desc,date
-HATHWAY,Hathway Cable & Datacom Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",14-Jan-2025
-HDFCAMC,HDFC Asset Management Company Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",14-Jan-2025
-NETWORK18,Network18 Media & Investments Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",14-Jan-2025
-SHOPERSTOP,Shoppers Stop Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",14-Jan-2025
 ABFRL,Aditya Birla Fashion and Retail Limited,Fund Raising,"To consider Fund Raising by way of issue of equity shares / warrants / any convertible securities / any other securities, through one or more of the permissible modes including but not limited to a qualified institutions placement, rights issuance, preferential allotment, further public offer, etc., subject to such approvals, as may be required under the applicable laws.",15-Jan-2025
 AEROFLEX,Aeroflex Industries Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",15-Jan-2025
 AIIL,Authum Investment & Infrastructure Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",15-Jan-2025
@@ -26,6 +22,7 @@ TRANSRAILL,Transrail Lighting Limited,Financial Results,"To consider and approve
 VIJIFIN,Viji Finance Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",15-Jan-2025
 ALOKINDS,Alok Industries Limited,Financial Results,"Alok Industries Limited has informed the Exchange about Board Meeting to be held on 16th January, 2025 inter-alia to consider and approve the Standalone and Consolidated Unaudited Financial Results of the Company for the quarter and nine months ended 31st December, 2024",16-Jan-2025
 AXISBANK,Axis Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",16-Jan-2025
+BCG,Brightcom Group Limited,Other business matters,"We hereby inform you that a meeting of the Board of Directors of Brightcom Group Limited is scheduled to be held on Thursday, January 16, 2025, inter alia, to consider and approve the following agenda items:1. The appointment of an additional director to the Board.2. Any other matters as may be deemed necessary.",16-Jan-2025
 BEPL,Bhansali Engineering Polymers Limited,Financial Results/Dividend,"The meeting of the Board of Directors of the Company is scheduled on 16/01/2025 ,inter alia, to consider and approve a. the Un-audited Financial Results (Standalone & Consolidated) of the Company for the quarter and nine months ended 31st December, 2024; b. declaration of 3rd Interim Dividend for the Financial Year 2024-25, if any.",16-Jan-2025
 DBCORP,D.B.Corp Limited,Financial Results,"To consider and approve the unaudited financial results (Standalone and Consolidated) of the Company for the period ended December 31, 2024",16-Jan-2025
 DGCONTENT,Digicontent Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",16-Jan-2025
@@ -46,10 +43,13 @@ SHEMAROO,Shemaroo Entertainment Limited,Financial Results,"To consider and appro
 SHEMAROO,Shemaroo Entertainment Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",16-Jan-2025
 SPENCERS,Spencer's Retail Limited,Financial Results,"To consider and approve the Un-audited Financial Results (Standalone and Consolidated) of the Company for the third quarter and nine months ended on December 31, 2024 pertaining to the Financial year 2024-25.",16-Jan-2025
 SWSOLAR,Sterling and Wilson Renewable Energy Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",16-Jan-2025
+VISHWARAJ,Vishwaraj Sugar Industries Limited,Other business matters,To consider other business matters,16-Jan-2025
 5PAISA,5Paisa Capital Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",17-Jan-2025
 AETHER,Aether Industries Limited,Financial Results/Other business matters,"This is to inform that in accordance with Regulation 29 of the SEBI (Listing Obligation and Disclosure Requirements) Regulations, 2015, as amended, the Meeting of the Board of Directors of the Company is scheduled to be held on Friday, January 17, 2025, inter-alia to consider and approve the agenda points, as annexed.",17-Jan-2025
+AETHER,Aether Industries Limited,Financial Results/Other business matters,"Further to our original intimation for the captioned matter, having Ref. No.: AIL/SE/65/2024-25, dated January 1, 2025, for the Board Meeting, scheduled to be held on Friday, January 17, 2025, we herewith correct that the standalone and consolidated Financial Results will be  unaudited , as annexed.",17-Jan-2025
 ATLASCYCLE,Atlas Cycles (Haryana) Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 CEWATER,Concord Enviro Systems Limited,Financial Results,"To consider and approve the financial results for the quarter and half year ended September 30, 2024",17-Jan-2025
+DUCON,Ducon Infratechnologies Limited,Fund Raising,To consider Fund Raising,17-Jan-2025
 EXCEL,Excel Realty N Infra Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 GANESHHOUC,Ganesh Housing Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 ICICIGI,ICICI Lombard General Insurance Company Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
@@ -62,6 +62,7 @@ NEXTMEDIA,Next Mediaworks Limited,Financial Results,"To consider and approve the
 PONNIERODE,Ponni Sugars (Erode) Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 RALLIS,Rallis India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 RKFORGE,Ramkrishna Forgings Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",17-Jan-2025
+SANATHAN,Sanathan Textiles Limited,Financial Results,"To consider and approve the financial results for the period ended September 30, 2024",17-Jan-2025
 SBILIFE,SBI Life Insurance Company Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 SESHAPAPER,Seshasayee Paper and Boards Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
 SPLPETRO,Supreme Petrochem Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",17-Jan-2025
@@ -79,40 +80,64 @@ CONTROLPR,Control Print Limited,Financial Results/Dividend,"To consider and appr
 DCMSHRIRAM,DCM Shriram Limited,Financial Results/Dividend/Fund Raising,"To consider and approve the financial results for the period ended December 31, 2024, dividend and Fund Raising",18-Jan-2025
 GULFPETRO,GP Petroleums Limited,Financial Results/Other business matters,"To consider and approve the financial results for the quarter and nine months ended December 31, 2024 and other business matters.",18-Jan-2025
 KOTAKBANK,Kotak Mahindra Bank Limited,Financial Results/Fund Raising,"To consider and approve the financial results for the period ended December 31, 2024 and Fund Raising",18-Jan-2025
+NETWEB,Netweb Technologies India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",18-Jan-2025
 RBLBANK,RBL Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",18-Jan-2025
+SIGACHI,Sigachi Industries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",18-Jan-2025
 VARDHACRLC,Vardhman Acrylics Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",18-Jan-2025
 KSOLVES,Ksolves India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",19-Jan-2025
+AGI,AGI Greenpac Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",20-Jan-2025
+APLAPOLLO,APL Apollo Tubes Limited,Financial Results,"To consider and approve the unaudited financial results for the period ended December 31, 2024",20-Jan-2025
+AURUM,Aurum PropTech Limited,Financial Results,"Meeting of the Board of Directors of Aurum PropTech Limited is scheduled to be held on Monday, January 20, 2025 at the Registered Office of the Company, inter alia, to consider and approve the unaudited financial results (Standalone & Consolidated) of the Company for the quarter and nine months ended December 31, 2024",20-Jan-2025
+CENTRALBK,Central Bank of India,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+DIXON,Dixon Technologies (India) Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+IDBI,IDBI Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+INDOSTAR,IndoStar Capital Finance Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+IRFC,Indian Railway Finance Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
 ISEC,ICICI Securities Limited,Financial Results,"To consider the proposal for approval of the unaudited financial results of the Company for the quarter and nine months ended December 31, 2024 at its Meeting to be held on Monday, January 20, 2025.",20-Jan-2025
 J&KBANK,The Jammu & Kashmir Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
 KARURVYSYA,Karur Vysya Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+KRYSTAL,Krystal Integrated Services Limited,Financial Results/Fund Raising,"To consider and approve the financial results for the period ended December 31, 2024 and Fund Raising",20-Jan-2025
 LTF,L&T Finance Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
 MRPL,Mangalore Refinery and Petrochemicals Limited,Financial Results,"To consider and approve the Standalone and Consolidated Unaudited Financial Results for the period ended December 31, 2024.",20-Jan-2025
+NEWGEN,Newgen Software Technologies Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+OBEROIRLTY,Oberoi Realty Limited,Financial Results/Dividend,To consider and approve the financial results for Q3FY25 and to consider and declared 3rd interim dividend for FY25,20-Jan-2025
 PAYTM,One 97 Communications Limited,Financial Results,"To consider and approve the unaudited standalone and consolidated financial results of the Company for the quarter and nine months ended December 31, 2024",20-Jan-2025
+RPEL,Raghav Productivity Enhancers Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
+SHANTI,Shanti Overseas (India) Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",20-Jan-2025
 SUPREMEIND,Supreme Industries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",20-Jan-2025
 ABREL,Aditya Birla Real Estate Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+AGIIL,Agi Infra Limited,Other business matters,"To fix record date for determining the entitlement of the shareholders for the purpose of Split / sub-division of the existing equity shares of the Company having face value of Rs. 10/- each, fully paid up into 2 (two) equity shares of face value of Rs. 5/- each, fully paid-up",21-Jan-2025
 CYIENTDLM,Cyient DLM Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 EIMCOELECO,Eimco Elecon (India) Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 ICICIPRULI,ICICI Prudential Life Insurance Company Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+INDIAMART,Indiamart Intermesh Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+INDOCO,Indoco Remedies Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 JSFB,Jana Small Finance Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 KEI,KEI Industries Limited,Dividend,"To consider proposal for Interim Dividendfor the financial year 2024-25 at its meeting scheduled on Tuesday, January 21, 2025",21-Jan-2025
 KEI,KEI Industries Limited,Financial Results,"To consider and approve, inter-alia, the Un-Audited Standalone and Consolidated Financial Results for the quarter and nine months ended on 31st December, 2024",21-Jan-2025
 MANORAMA,Manorama Industries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+PNBHOUSING,PNB Housing Finance Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",21-Jan-2025
 PRIMESECU,Prime Securities Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
-SERVOTECH,Servotech Power Systems Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+ROSSARI,Rossari Biotech Limited,Financial Results,"Unaudited Financial Results (Standalone And Consolidated) For The Quarter And Nine Months Ended December 31, 2024.",21-Jan-2025
+SERVOTECH,Servotech Renewable Power System Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 SOUTHBANK,The South Indian Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
 TANLA,Tanla Platforms Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and interim dividend, if any",21-Jan-2025
 TATATECH,Tata Technologies Limited,Financial Results,"To consider and approve the Unaudited Standalone and Consolidated Financial Results for the quarter and nine-months ended December 31, 2024",21-Jan-2025
 ULTRACEMCO,UltraTech Cement Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",21-Jan-2025
+20MICRONS,20 Microns Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",22-Jan-2025
 ACCELYA,Accelya Solutions India Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",22-Jan-2025
+BPCL,Bharat Petroleum Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 CIGNITITEC,Cigniti Technologies Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 COFORGE,Coforge Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",22-Jan-2025
 ELECON,Elecon Engineering Company Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 GODIGIT,Go Digit General Insurance Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
+GRAVITA,Gravita India Limited,Financial Results,"To consider and approve the Unaudited financial results for the period ended December 31, 2024",22-Jan-2025
 HDFCBANK,HDFC Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 HERITGFOOD,Heritage Foods Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 HINDUNILVR,Hindustan Unilever Limited,Financial Results,"To consider and approve Unaudited Standalone and Consolidated Financial Results for the quarter ended 31st December, 2024.",22-Jan-2025
 HUDCO,Housing & Urban Development Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 LXCHEM,Laxmi Organic Industries Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",22-Jan-2025
+NIITMTS,NIIT Learning Systems Limited,Financial Results,"To consider and approve the financial results for the quarter and nine months ended December 31, 2024, both Consolidated and Standalone.",22-Jan-2025
 NUVOCO,Nuvoco Vistas Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
 PERSISTENT,Persistent Systems Limited,Financial Results/Dividend/Other business matters,"To consider and approve the financial results for the quarter and nine months ended December 31, 2024, dividend and other business matters",22-Jan-2025
 PIDILITIND,Pidilite Industries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",22-Jan-2025
@@ -126,21 +151,26 @@ CYIENT,Cyient Limited,Financial Results,"To consider and approve the financial r
 DRREDDY,Dr. Reddy's Laboratories Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 INDUSTOWER,Indus Towers Limited,Financial Results,"Indus Towers Limited has informed the Exchange regarding Notice of the Board Meeting to consider and approve the Audited Financial Results (Standalone & Consolidated) for the third quarter (Q3) and nine months ended on December 31, 2024",23-Jan-2025
 KFINTECH,Kfin Technologies Limited,Financial Results,"To consider and approve the standalone and consolidated unaudited financial results of the Company for the quarter and nine months ended December 31, 2024",23-Jan-2025
+MANKIND,Mankind Pharma Limited,Financial Results,"To consider and approve the unaudited financial results for the quarter and nine months ended on December 31, 2024",23-Jan-2025
 MPHASIS,MphasiS Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 NAM-INDIA,Nippon Life India Asset Management Limited,Financial Results,"To consider and approve the unaudited financial results for the period ended December 31, 2024",23-Jan-2025
 SENORES,Senores Pharmaceuticals Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",23-Jan-2025
 SONACOMS,Sona BLW Precision Forgings Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",23-Jan-2025
 SURYODAY,Suryoday Small Finance Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
+SYNGENE,Syngene International Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 TARACHAND,Tara Chand InfraLogistic Solutions Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",23-Jan-2025
+TEJASNET,Tejas Networks Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 TOKYOPLAST,Tokyo Plast International Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 UJJIVANSFB,Ujjivan Small Finance Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 ULTRACEMCO,UltraTech Cement Limited,Financial Results,"ULTRACEMCO : 23-Jan-2025 :  The Company has informed the Exchange that a Board meeting to be held on January 21, 2025 has been re-scheduled. Further, the Company has informed the Exchange that the meeting of the Board of Directors of the Company will be held on January 23, 2025,  To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
 UNITDSPR,United Spirits Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",23-Jan-2025
+V2RETAIL,V2 Retail Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters.",23-Jan-2025
 ACL,Andhra Cements Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 ALKYLAMINE,Alkyl Amines Chemicals Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 ATUL,Atul Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 AUBANK,AU Small Finance Bank Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 BHARATGEAR,Bharat Gears Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024Pursuant to Regulation 29 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, we hereby inform that 5/24-25 Meeting of the Board of Directors of                          the Company is scheduled to be held on January 24, 2025 inter-alia; to consider, approve                  and take on record the Un-Audited Financial Results of the Company for the quarter ended                  December 31, 2024.Further to our letter dated December 27, 2024, this is to inform that in terms of the Code for Prevention of Insider Trading read with the SEBI (Prohibition of Insider Trading) Regulations, 2015, the  Trading Window  for dealing in the shares of the Company for Promoters/Promoter Group/Directors/Key Managerial Personnel/Designated Persons/Connected Persons of the Company shall be closed till Sunday, January 26, 2025.You are requested to take it on your records.",24-Jan-2025
+BLAL,BEML Land Assets Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 CENTRUM,Centrum Capital Limited,Financial Results,"To consider and approve the unaudited financial results (Standalone and Consolidated) for the quarter and nine-months ended December 31, 2024",24-Jan-2025
 CREDITACC,CREDITACCESS GRAMEEN LIMITED,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",24-Jan-2025
 DAMCAPITAL,Dam Capital Advisors Limited,Financial Results,"To consider and approve the financial results for the quarter ended December 31, 2024",24-Jan-2025
@@ -148,11 +178,15 @@ GODREJCP,Godrej Consumer Products Limited,Financial Results/Dividend,"To conside
 GRANULES,Granules India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 GREENPOWER,Orient Green Power Company Limited,Financial Results,"To consider and approve the un-audited financial results for the quarter and nine months ended December 31, 2024",24-Jan-2025
 HINDPETRO,Hindustan Petroleum Corporation Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
+INTELLECT,Intellect Design Arena Limited,Financial Results,"To consider and approve the Unaudited financial results for the period ended December 31, 2024",24-Jan-2025
 JSWSTEEL,JSW Steel Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 LAURUSLABS,Laurus Labs Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 LMW,LMW Limited,Financial Results,To consider and approve the Unaudited Financial Results of the Company for the quarter and period ended 31st December 2024.,24-Jan-2025
+NIITLTD,NIIT Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
+POCL,Pondy Oxides & Chemicals Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",24-Jan-2025
 SAGCEM,Sagar Cements Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 SHREDIGCEM,Shree Digvijay Cement Co.Ltd,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
+TORNTPHARM,Torrent Pharmaceuticals Limited,Financial Results/Dividend/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024, dividend and other business matters",24-Jan-2025
 TRIDENT,Trident Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",24-Jan-2025
 TTKHLTCARE,TTK Healthcare Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",24-Jan-2025
 UGROCAP,Ugro Capital Limited,Financial Results,"i) To consider and approve the Unaudited Financial Results for the quarter ending 31st December 2024 under Regulation 33 and 52 of the SEBI Listing Regulations along with the Limited Review Report and; ii) to consider any other items with the permission of the Chair. Further, in consonance with the provisions of SEBI (Prohibition of Insider Trading) Regulations, 2015 and as per 'Code of Conduct for Prohibition of Insider Trading' of the Company ( Code ), the trading window shall remain closed from 30th December 2024 till 48 hours after declaration of Unaudited Financial Results for the quarter ending 31st December 2024. The communication is also being circulated with the Directors and Specified Persons as defined in the Code. You are requested to take the same on your records",24-Jan-2025
@@ -168,8 +202,10 @@ EMAMILTD,Emami Limited,Financial Results/Dividend,"To consider and approve the f
 GANGOTRI,Gangotri Textiles Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",27-Jan-2025
 MANBA,Manba Finance Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",27-Jan-2025
 PETRONET,Petronet LNG Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024.Pursuant to Regulation 29(2) of SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, this is to inform that the Meeting of the Board of Directors of the Company will be held on Monday, 27th January 2025, inter-alia, to consider and approve unaudited Financial Results of the Company for the quarter and nine-months ended 31st December 2024.Pursuant to Code for Prevention of Insider Trading in the Securities of Petronet LNG Limited (PLL's Code) as well as Circular issued by the Stock Exchanges dated 2nd April, 2019, it was informed to the Stock Exchanges where the shares of the Company are listed vide letter dated 26th June 2024 that the Trading Window for dealing in securities of PLL would be closed, for all 'Insiders' as per PLL's Code, from 1st January 2025 till 48 hours after the financial results for the quarter and nine-months ended 31st December 2024 would become generally available to the Public.In view of the above, the Trading Window for trading in PLL' s securities which was closed from 1st January 2025 shall remain closed till 29th January 2025 (both days inclusive). All Insiders have been advised not to deal with the securities of PLL during this period.",27-Jan-2025
+ROSSELLIND,Rossell India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",27-Jan-2025
 SUMICHEM,Sumitomo Chemical India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",27-Jan-2025
 WONDERLA,Wonderla Holidays Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024.",27-Jan-2025
+APARINDS,Apar Industries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 BAJAJ-AUTO,Bajaj Auto Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 BHEL,Bharat Heavy Electricals Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 BOSCHLTD,Bosch Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",28-Jan-2025
@@ -182,6 +218,7 @@ IXIGO,Le Travenues Technology Limited,Financial Results,"To consider and approve
 JMFINANCIL,JM Financial Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 M&MFIN,Mahindra & Mahindra Financial Services Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 NUCLEUS,Nucleus Software Exports Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",28-Jan-2025
+PPLPHARMA,Piramal Pharma Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 PUNJABCHEM,Punjab Chemicals & Crop Protection Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",28-Jan-2025
 RBL,Rane Brake Lining Limited,Financial Results,"RANE BRAKE LINING LTD. has informed that the meeting of the Board of Directors of the Company is scheduled on January 28, 2025, inter alia, to consider and approve the Un-Audited Financial Results for the quarter ending December 31, 2024. Further, in accordance with Rane's lnsider code, the 'Trading window' would remain closed for Promoters, Directors, other connected persons and designated employees of the company from December 31, 2024 to January 30, 2025 (both days inclusive) for the above purpose.",28-Jan-2025
 RUSHIL,Rushil Decor Limited,Financial Results/Other business matters,"To consider and approve the Unaudited Standalone and Consolidated financial results for the period ended December 31, 2024 and other business matters",28-Jan-2025
@@ -197,6 +234,8 @@ BLUESTARCO,Blue Star Limited,Financial Results,"To consider and approve the fina
 CAMS,Computer Age Management Services Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",29-Jan-2025
 CRAFTSMAN,Craftsman Automation Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",29-Jan-2025
 KPITTECH,KPIT Technologies Limited,Financial Results,"To consider and approve the Un-audited Financial Results for the period ended December 31, 2024",29-Jan-2025
+MARUTI,Maruti Suzuki India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",29-Jan-2025
+RADICO,Radico Khaitan Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",29-Jan-2025
 RANEENGINE,Rane Engine Valve Limited,Financial Results,"RANE ENGINE VALVE LTD. has informed that the meeting of the Board of Directors of the Company is scheduled on January 29, 2025, inter alia, to consider and approve the Un-Audited Financial Results for the quarter ending December 31, 2024. Further, in accordance with Rane's lnsider code, the 'Trading window' would remain closed for Promoters, Directors, other connected persons and designated employees of the company from December 31, 2024 to January 31, 2025 (both days inclusive) for the above purpose.",29-Jan-2025
 TATAMOTORS,Tata Motors Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",29-Jan-2025
 TEAMLEASE,Teamlease Services Limited,Financial Results,TeamLease: Intimation of Q3 Board Meeting for Financial Year 24-25,29-Jan-2025
@@ -207,20 +246,23 @@ BEL,Bharat Electronics Limited,Financial Results,"To consider and approve the fi
 BIOCON,Biocon Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",30-Jan-2025
 CONCOR,Container Corporation of India Limited,Financial Results/Dividend/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024, dividend and other business matters",30-Jan-2025
 DABUR,Dabur India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",30-Jan-2025
+JTEKTINDIA,Jtekt India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",30-Jan-2025
 NAVINFLUOR,Navin Fluorine International Limited,Financial Results,"Pursuant to Regulation 29 of SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, this is to inform you that a Meeting of the Board of Directors of the Company is scheduled to be heldon Thursday, January 30, 2025, inter-alia, to consider, approve and take on record, the UnauditedStandalone and Consolidated Financial Results of the Company for the quarter and nine months endingDecember 31, 2024.",30-Jan-2025
 NELCAST,Nelcast Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",30-Jan-2025
-NESCO,Nesco Limited,Financial Results,Revised intimation on notice of Board Meeting.,30-Jan-2025
 NESCO,Nesco Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",30-Jan-2025
+NESCO,Nesco Limited,Financial Results,Revised intimation on notice of Board Meeting.,30-Jan-2025
 PRICOLLTD,Pricol Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",30-Jan-2025
 RML,Rane (Madras) Limited,Financial Results,"RANE (MADRAS) LTD. has informed that the meeting of the Board of Directors of the Company is scheduled on January 30, 2025, inter alia, to consider and approve the Un-Audited Financial Results for the quarter ending December 31, 2024. Further, in accordance with Rane's lnsider code, the 'Trading window' would remain closed for Promoters, Directors, other connected persons and designated employees of the company from December 31, 2024 to February 01, 2025 (both days inclusive) for the above purpose.",30-Jan-2025
 SHREECEM,SHREE CEMENT LIMITED,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",30-Jan-2025
 CHOLAFIN,Cholamandalam Investment and Finance Company Limited,Financial Results,"To consider and approve the unaudited standalone & consolidated financial statements of the Company for the quarter and nine months ended December 31, 2024",31-Jan-2025
+GHCL,GHCL Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",31-Jan-2025
 LGBBROSLTD,LG Balakrishnan & Bros Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",31-Jan-2025
 MAHLIFE,Mahindra Lifespace Developers Limited,Financial Results,"To consider and approve, inter alia,  the financial results for the period ended December 31, 2024",31-Jan-2025
 MARICO,Marico Limited,Financial Results,"Pursuant to Regulation 29 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, we hereby inform you that a meeting of the Board of Directors of the Company is scheduled to be held on Friday, January 31, 2025, to inter-alia, consider and approve the un-audited standalone & consolidated financial results of the Company for the quarter ended December 31, 2024, along with the Limited Review Report of the Auditors thereon.",31-Jan-2025
 MEDPLUS,Medplus Health Services Limited,Financial Results,"Intimation of Board Meeting under Regulation 29 of SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",31-Jan-2025
 MHRIL,Mahindra Holidays & Resorts India Limited,Financial Results,"To consider and approve the financial results for quarter and nine months ended December 31, 2024",31-Jan-2025
 NESTLEIND,Nestle India Limited,Financial Results,"To consider and approve the financial results for the third quarter and nine months ending December 31, 2024",31-Jan-2025
+ONGC,Oil & Natural Gas Corporation Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and 2nd interim dividend, if any.",31-Jan-2025
 POONAWALLA,Poonawalla Fincorp Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",31-Jan-2025
 SUNCLAY,Sundaram Clayton Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",31-Jan-2025
 CASTROLIND,Castrol India Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",03-Feb-2025
@@ -232,13 +274,18 @@ LYKALABS,Lyka Labs Limited,Financial Results,"To consider and approve the financ
 LYKALABS,Lyka Labs Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",04-Feb-2025
 LYKALABS,Lyka Labs Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",04-Feb-2025
 MFSL,Max Financial Services Limited,Financial Results,"To consider and approve the un-audited financial results (both Standalone and Consolidated) for the period ended December 31, 2024",04-Feb-2025
+ONMOBILE,OnMobile Global Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",04-Feb-2025
+TATAPOWER,Tata Power Company Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",04-Feb-2025
 THERMAX,Thermax Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",04-Feb-2025
 CUMMINSIND,Cummins India Limited,Financial Results/Dividend,"To consider and approve the financial results for the quarter and nine months ended December 31, 2024, and to consider proposal for Interim Dividend for FY 2024-25",05-Feb-2025
 KANSAINER,Kansai Nerolac Paints Limited,Financial Results,"Intimation of meeting of Board of Directors of Kansai Nerolac Paints Limited to be held on 5th February, 2025, to inter alia consider the Unaudited Standalone and Consolidated Financial Results of the Company for the quarter and nine months ending 31st December, 2024.",05-Feb-2025
 MINDTECK,Mindteck (India) Limited,Financial Results/Other business matters,"To consider and approve the financial results for the period ended December 31, 2024 and other business matters",05-Feb-2025
 PAGEIND,Page Industries Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",05-Feb-2025
 TIMKEN,Timken India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",05-Feb-2025
+MSUMI,Motherson Sumi Wiring India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",06-Feb-2025
 RANEHOLDIN,Rane Holdings Limited,Financial Results,"RANE HOLDINGS LTD. has informed that the meeting of the Board of Directors of the Company is scheduled on February 06, 2025, inter alia, to consider and approve the Un-Audited Financial Results for the quarter ending December 31, 2024. Further, in accordance with Rane's lnsider code, the 'Trading window' would remain closed for Promoters, Directors, other connected persons and designated employees of the company from December 31, 2024 to February 08, 2025 (both days inclusive) for the above purpose.",06-Feb-2025
+AKZOINDIA,Akzo Nobel India Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",07-Feb-2025
+CHOLAHLDNG,Cholamandalam Financial Holdings Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",07-Feb-2025
 DLINKINDIA,D-Link (India) Limited,Financial Results,"To consider and approve the financial results for the period ending December 31, 2024",07-Feb-2025
 GOLDIAM,Goldiam International Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",07-Feb-2025
 ARE&M,Amara Raja Energy & Mobility Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",08-Feb-2025
@@ -257,6 +304,7 @@ GAYAHWS,Gayatri Highways Limited,Financial Results,"Intimation of date of the Bo
 PGHL,Procter & Gamble Health Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",12-Feb-2025
 SUVENPHAR,Suven Pharmaceuticals Limited,Financial Results,"To consider and approve the financial results for the period ending December 31, 2024",12-Feb-2025
 HINDALCO,Hindalco Industries Limited,Financial Results,"To consider and approve the unaudited standalone and consolidated financial results for the period ended December 31, 2024",13-Feb-2025
+UBL,United Breweries Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",13-Feb-2025
 ABB,ABB India Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",17-Feb-2025
 ABB,ABB India Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",17-Feb-2025
 ABB,ABB India Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended December 31, 2024 and dividend",18-Feb-2025
