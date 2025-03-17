@@ -1,15 +1,4 @@
 symbol,company,purpose,bm_desc,date
-GALAXYSURF,Galaxy Surfactants Limited,Dividend,Prior intimation of Board Meeting inter alia to consider and approve interim dividend for the financial year 2024-25.,15-Mar-2025
-GALAXYSURF,Galaxy Surfactants Limited,Dividend,To consider interim dividend for the financial year 2024-25,15-Mar-2025
-MANCREDIT,Mangal Credit and Fincorp Limited,Fund Raising,To consider Fund Raising by issuing Non Convertible Debentures,15-Mar-2025
-QPOWER,Quality Power Electrical Equipments Limited,Financial Results,"To consider and approve the financial results for the period ended December 31, 2024",15-Mar-2025
-VCL,Vaxtex Cotfab Limited,Fund Raising,Issue of Equity shares of the Company on Rights basis.,15-Mar-2025
-FIVESTAR,Five-Star Business Finance Limited,Fund Raising,"To consider the proposal for issuance of Non -Convertible Debentures through Private Placement, in one or more tranches and/or series from time to time, amongst other items",17-Mar-2025
-GOPAL,Gopal Snacks Limited,Other business matters,To consider other business matters,17-Mar-2025
-IREDA,Indian Renewable Energy Development Agency Limited,Fund Raising,To consider the proposal for enhancement of borrowing plan for FY 2024-25.,17-Mar-2025
-IRFC,Indian Railway Finance Corporation Limited,Dividend/Other business matters,To consider dividend and other business matters,17-Mar-2025
-MMP,MMP Industries Limited,Other business matters,To consider other business matters,17-Mar-2025
-NMDC,NMDC Limited,Dividend,To consider Interim Dividend for the Financial Year 2024-25.,17-Mar-2025
 CGPOWER,CG Power and Industrial Solutions Limited,Dividend,To consider the declaration of Interim Dividend for the FY 2024-25.,18-Mar-2025
 KUNDANMM,Kundan Minerals and Metals Limited,Other business matters,To consider other business matters,18-Mar-2025
 RMCL,Radha Madhav Corporation Limited,Other business matters,Intimation of Board meeting for appointment of Company Secretary and Compliance Officer,18-Mar-2025
@@ -18,6 +7,9 @@ SGIL,Synergy Green Industries Limited,Other business matters,To consider other b
 TARC,TARC Limited,Fund Raising/Other business matters,To consider Fund Raising and other business matters,18-Mar-2025
 UGROCAP,Ugro Capital Limited,Fund Raising,Intimation of Investment and Borrowing Committee meeting for raising funds by way of issuance of Non-Convertible Debentures through public issue.,18-Mar-2025
 21STCENMGM,21st Century Management Services Limited,Other business matters,To consider other business matters,19-Mar-2025
+ASMS,Bartronics India Limited,Other business matters,To consider other business matters,19-Mar-2025
+DHANBANK,Dhanlaxmi Bank Limited,Fund Raising,To consider Fund Raising,19-Mar-2025
+GVPTECH,GVP Infotech Limited,Fund Raising,To consider and approve fund raising thrugh Issue of Equity shares on a Rights basis.,19-Mar-2025
 IOB,Indian Overseas Bank,Fund Raising,To consider Fund Raising by way of Lond Term Infrastructure Bonds,19-Mar-2025
 KSOLVES,Ksolves India Limited,Dividend,To consider dividend- 3rd interim dividend for FY 2024-25,19-Mar-2025
 LORDSCHLO,Lords Chloro Alkali Limited,Other business matters,To consider other business matters,19-Mar-2025
@@ -26,11 +18,15 @@ MOTOGENFIN,The Motor & General Finance Limited,Other business matters,To conside
 NHPC,NHPC Limited,Fund Raising,To consider and approve borrowing plan for raising of debt for  FY 2025-26.,19-Mar-2025
 RECLTD,REC Limited,Dividend,"In terms of Regulation 29 of SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, this is to inform that a meeting of the Board of Directors of REC Limited ( the Company ) will be held on Wednesday, March 19, 2025 inter-alia to consider the proposal for declaration of 4th Interim Dividend, if any, for the financial year 2024-25.",19-Mar-2025
 TATAMOTORS,Tata Motors Limited,Fund Raising,"to consider and approve the issuance of Rated, Listed, Unsecured, Redeemable, Non-Convertible Debentures on a private placement basis aggregating upto Rs. 2,000 crore.",19-Mar-2025
+COMSYN,Commercial Syn Bags Limited,Other business matters,To consider and approve the matter related to allotment of Warrants,20-Mar-2025
+INDIANB,Indian Bank,Fund Raising,To consider a proposal regarding Fund Raising plan of the Bank,20-Mar-2025
 MIDHANI,Mishra Dhatu Nigam Limited,Dividend,To consider declaration of Interim Dividend for FY 2024- 25.,20-Mar-2025
 SHAKTIPUMP,Shakti Pumps (India) Limited,Other business matters,To consider and approve the appointment of Mrs. Vandana Bhagavatula as an Additional cum woman Independent Director of the Company subject to the approval of Shareholders of the Company through postal ballot.,20-Mar-2025
 TVSMOTOR,TVS Motor Company Limited,Dividend,"To consider and declare interim dividend, if any, to the shareholders of the Company for the year ending 31st March 2025",20-Mar-2025
 INTERISE,Interise Trust,Dividend/Other business matters,"The Board will consider and approve inter-alia declaration for distribution if any to the unitholders of the Interise Trust at their meeting scheduled on March 21, 2025.",21-Mar-2025
 TNPL,Tamil Nadu Newsprint & Papers Limited,Other business matters,"11th Meeting of the Independent Directors scheduled to be held on 21st March, 2025 to inter-alia consider the following:1. Review the performance of Non-Independent Directors and the Board as a whole;2. Review the performance of the Chairperson of the Company, considering the review of Executive Directors and Non-Executive Directors of the company;3. Assess the quality, quantity and timeliness of flow of information between the company management and the Board that is necessary for the Board to effectively and reasonably perform their duties;4. Any other matter.",21-Mar-2025
+INFY,Infosys Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended March 31, 2025 and dividend",17-Apr-2025
 INDIACEM,The India Cements Limited,Financial Results,"To consider and approve the financial results for the period ended March 31, 2025",26-Apr-2025
 ULTRACEMCO,UltraTech Cement Limited,Financial Results/Dividend,"To consider and approve the audited financial results for the period ended March 31, 2025 and dividend",28-Apr-2025
 COFORGE,Coforge Limited,Financial Results/Dividend,"To consider and approve the financial results for the period ended March 31, 2025 and dividend",05-May-2025
+ABB,ABB India Limited,Financial Results,"To consider and approve the financial results for the period ended March 31, 2025",09-May-2025
