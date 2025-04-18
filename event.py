@@ -30,16 +30,19 @@ client = gspread.authorize(credentials)
 sheet = client.open_by_key(SHEET_ID)
 
 # Function to update data in a Google Sheet tab
-# Function to update data in a Google Sheet tab
 def upload_to_sheets(df, tab_name):
     try:
+        # Replace problematic values with empty strings or a placeholder
+        df_clean = df.replace([float('inf'), float('-inf')], None)
+        df_clean = df_clean.fillna('')  # or use a placeholder like 'NA'
+
         try:
             worksheet = sheet.worksheet(tab_name)
         except gspread.exceptions.WorksheetNotFound:
             worksheet = sheet.add_worksheet(title=tab_name, rows="100", cols="20")
 
         worksheet.clear()
-        worksheet.update([df.columns.values.tolist()] + df.values.tolist())
+        worksheet.update([df_clean.columns.values.tolist()] + df_clean.values.tolist())
         print(f"✅ Data uploaded to '{tab_name}' tab.")
     except Exception as e:
         print(f"❌ Google Sheet error for {tab_name}: {e}")
