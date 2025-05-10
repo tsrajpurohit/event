@@ -8,7 +8,7 @@ import requests
 import csv
 from datetime import datetime, timedelta
 import datetime as dt
-import time
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 # --- 7. Upload to Google Sheets ---
 credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
@@ -46,71 +46,91 @@ to_date_str = to_date.strftime('%d-%m-%Y')
 from_date_str = from_date.strftime('%d-%m-%Y')
 
 # --- 2. Get NSE Session ---
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def get_nse_session():
     session = requests.Session()
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Language': 'en-US,en;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
         'Referer': 'https://www.nseindia.com/',
         'DNT': '1',
         'Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-User': '?1',
+        'Cache-Control': 'max-age=0',
     }
     session.headers.update(headers)
 
+    # Optional: Use proxy if set in environment (for GitHub Actions)
+    proxies = {
+        'http': os.getenv('HTTP_PROXY'),
+        'https': os.getenv('HTTPS_PROXY'),
+    } if os.getenv('HTTP_PROXY') or os.getenv('HTTPS_PROXY') else {}
+
     try:
-        # Visit the homepage to get cookies
         url = "https://www.nseindia.com/"
-        response = session.get(url, timeout=10)
+        response = session.get(url, proxies=proxies, timeout=15)
         if response.status_code == 200:
             print("✅ Accessed NSE homepage and set cookies.")
             return session
         else:
             print(f"❌ Failed to access NSE homepage. Status Code: {response.status_code}")
+            print(f"Response Content: {response.text[:500]}")  # Log partial response for debugging
             return None
     except requests.exceptions.RequestException as e:
         print(f"❌ Error accessing NSE homepage: {e}")
         return None
 
 # --- 3. Fetch NSE Event Calendar ---
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def fetch_nse_events(session, from_date_str, to_date_str):
     url = f'https://www.nseindia.com/api/event-calendar?index=equities&from_date={from_date_str}&to_date={to_date_str}'
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'application/json',
-        'Accept-Language': 'en-US,en;q=0.5',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'en-US,en;q=0.9',
         'Referer': 'https://www.nseindia.com/companies-listing/corporate-filings-event-calendar',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept-Encoding': 'gzip, deflate, br',
     }
 
     try:
-        response = session.get(url, headers=headers, timeout=10)
+        response = session.get(url, headers=headers, timeout=15)
         if response.status_code == 200:
             return response.json()
         else:
             print(f"❌ Event calendar request failed. Status Code: {response.status_code}")
+            print(f"Response Content: {response.text[:500]}")
             return None
     except requests.exceptions.RequestException as e:
         print(f"❌ Error fetching event calendar: {e}")
         return None
 
 # --- 4. Fetch FO Holidays ---
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def fetch_fo_holidays(session):
     url = 'https://www.nseindia.com/api/holiday-master?type=trading'
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'application/json',
-        'Accept-Language': 'en-US,en;q=0.5',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language': 'en-US,en;q=0.9',
         'Referer': 'https://www.nseindia.com/resources/exchange-communication-holidays',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept-Encoding': 'gzip, deflate, br',
     }
 
     try:
-        response = session.get(url, headers=headers, timeout=10)
+        response = session.get(url, headers=headers, timeout=15)
         if response.status_code == 200:
             return response.json()
         else:
             print(f"❌ FO holidays request failed. Status Code: {response.status_code}")
+            print(f"Response Content: {response.text[:500]}")
             return None
     except requests.exceptions.RequestException as e:
         print(f"❌ Error fetching FO holidays: {e}")
@@ -164,7 +184,6 @@ def save_holidays_to_csv(fo_holidays, filename="fo_holidays.csv"):
 # --- 7. Fetch Bulk/Block Deals Using nsepython ---
 def fetch_and_save_deals(deal_type, local_filename, sheet_tab_name):
     try:
-        # Use nsepython to fetch bulk/block deals
         if deal_type == "bulk":
             data = nse_bulk_deals()
         elif deal_type == "block":
