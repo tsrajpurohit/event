@@ -3,22 +3,22 @@ import gspread
 from google.oauth2.service_account import Credentials
 import os
 import json
-import requests
 import csv
 from datetime import datetime, timedelta
 import datetime as dt
 from tenacity import retry, stop_after_attempt, wait_fixed
+from pandas_market_calendars import get_calendar
 
-# Try importing nsepython explicitly
+# Try importing nsepythonserver
 try:
-    from nsepython import nse_bulk_deals, nse_block_deals  # Import specific functions
+    from nsepythonserver import nse_largedeals
     NSEPYTHON_AVAILABLE = True
-    print("✅ nsepython module imported successfully.")
+    print("✅ nsepythonserver module imported successfully.")
 except ImportError as e:
     NSEPYTHON_AVAILABLE = False
-    print(f"❌ Failed to import nsepython: {e}")
+    print(f"❌ Failed to import nsepythonserver: {e}")
 
-# --- 7. Upload to Google Sheets ---
+# --- Upload to Google Sheets ---
 credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
 SHEET_ID = "1IUChF0UFKMqVLxTI69lXBi-g48f-oTYqI1K9miipKgY"
 
@@ -47,141 +47,41 @@ def upload_to_sheets(df, tab_name):
     except Exception as e:
         print(f"❌ Google Sheet error for {tab_name}: {e}")
 
-# --- 1. Calculate Dates ---
+# --- Calculate Dates ---
 to_date = dt.datetime.today()
 from_date = to_date - timedelta(days=30)
 to_date_str = to_date.strftime('%d-%m-%Y')
 from_date_str = from_date.strftime('%d-%m-%Y')
 
-# --- 2. Get NSE Session ---
-@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
-def get_nse_session():
-    session = requests.Session()
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Referer': 'https://www.google.com/',
-        'DNT': '1',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0',
-        'TE': 'trailers',
-    }
-    session.headers.update(headers)
-
-    proxies = {
-        'http': os.getenv('HTTP_PROXY'),
-        'https': os.getenv('HTTPS_PROXY'),
-    } if os.getenv('HTTP_PROXY') or os.getenv('HTTPS_PROXY') else {}
-
+# --- Fetch NSE Holidays ---
+def fetch_nse_holidays(year=2025):
     try:
-        init_url = "https://www.nseindia.com/resources/exchange-communication-holidays"
-        init_response = session.get(init_url, proxies=proxies, timeout=15)
-        if init_response.status_code == 200:
-            print("✅ Fetched initial cookies from holidays page.")
-        else:
-            print(f"⚠️ Initial cookie fetch failed. Status Code: {init_response.status_code}")
-
-        url = "https://www.nseindia.com/"
-        response = session.get(url, proxies=proxies, timeout=15)
-        if response.status_code == 200:
-            print("✅ Accessed NSE homepage and set cookies.")
-            print(f"Cookies: {session.cookies.get_dict()}")
-            return session
-        else:
-            print(f"❌ Failed to access NSE homepage. Status Code: {response.status_code}")
-            print(f"Response Content: {response.text[:1000]}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error accessing NSE homepage: {e}")
+        nse_cal = get_calendar('XNSE')  # NSE calendar
+        holidays = nse_cal.holidays().holidays
+        # Filter holidays for the specified year
+        holidays_year = [h for h in holidays if h.year == year]
+        # Convert to a list of dictionaries for consistency
+        holiday_data = [
+            {
+                'tradingDate': h.strftime('%d-%m-%Y'),
+                'weekDay': h.strftime('%A'),
+                'description': 'Holiday',  # Placeholder, as exact descriptions may vary
+                'morning_session': 'Closed',
+                'evening_session': 'Closed',
+                'Sr_no': idx + 1
+            }
+            for idx, h in enumerate(holidays_year)
+        ]
+        return holiday_data
+    except Exception as e:
+        print(f"❌ Error fetching NSE holidays: {e}")
         return None
 
-# --- 3. Fetch NSE Event Calendar ---
-@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
-def fetch_nse_events(session, from_date_str, to_date_str):
-    url = f'https://www.nseindia.com/api/event-calendar?index=equities&from_date={from_date_str}&to_date={to_date_str}'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/377.36',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': 'https://www.nseindia.com/companies-listing/corporate-filings-event-calendar',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Accept-Encoding': 'gzip, deflate, br',
-    }
-
-    try:
-        response = session.get(url, headers=headers, timeout=15)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"❌ Event calendar request failed. Status Code: {response.status_code}")
-            print(f"Response Content: {response.text[:1000]}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching event calendar: {e}")
-        return None
-
-# --- 4. Fetch FO Holidays ---
-@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
-def fetch_fo_holidays(session):
-    url = 'https://www.nseindia.com/api/holiday-master?type=trading'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
-        'Accept': 'application/json, text/plain, */*',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Referer': 'https://www.nseindia.com/resources/exchange-communication-holidays',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Accept-Encoding': 'gzip, deflate, br',
-    }
-
-    try:
-        response = session.get(url, headers=headers, timeout=15)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"❌ FO holidays request failed. Status Code: {response.status_code}")
-            print(f"Response Content: {response.text[:1000]}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching FO holidays: {e}")
-        return None
-
-# --- 5. Save Events to CSV ---
-def save_events_to_csv(events, filename="nse_events.csv"):
-    if not events:
-        print("⚠️ No event data to save.")
-        return
-    if isinstance(events, dict):
-        events = [events]
-    keys = ['company', 'date', 'purpose', 'symbol', 'bm_desc']
-    with open(filename, mode='w', newline='', encoding='utf-8') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=keys)
-        writer.writeheader()
-        for event in events:
-            writer.writerow({
-                'company': event.get('company', ''),
-                'date': event.get('date', ''),
-                'purpose': event.get('purpose', ''),
-                'symbol': event.get('symbol', ''),
-                'bm_desc': event.get('bm_desc', '')
-            })
-    print(f"✅ Events saved to '{filename}'")
-
-# --- 6. Save Holidays to CSV ---
+# --- Save Holidays to CSV ---
 def save_holidays_to_csv(fo_holidays, filename="fo_holidays.csv"):
     if not fo_holidays:
         print("⚠️ No FO holiday data to save.")
         return
-    if isinstance(fo_holidays, dict) and 'FO' in fo_holidays:
-        fo_holidays = fo_holidays['FO']
-    elif isinstance(fo_holidays, dict):
-        fo_holidays = [fo_holidays]
     keys = ['tradingDate', 'weekDay', 'description', 'morning_session', 'evening_session', 'Sr_no']
     with open(filename, mode='w', newline='', encoding='utf-8') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=keys)
@@ -197,19 +97,16 @@ def save_holidays_to_csv(fo_holidays, filename="fo_holidays.csv"):
             })
     print(f"✅ FO Holidays saved to '{filename}'")
 
-# --- 7. Fetch Bulk/Block Deals Using nsepython ---
+# --- Fetch Bulk/Block Deals Using nsepythonserver ---
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def fetch_and_save_deals(deal_type, local_filename, sheet_tab_name):
     if not NSEPYTHON_AVAILABLE:
-        print(f"❌ Cannot fetch {deal_type} deals: nsepython module not available.")
+        print(f"❌ Cannot fetch {deal_type} deals: nsepythonserver module not available.")
         return
     try:
-        if deal_type == "bulk":
-            data = nse_bulk_deals()
-        elif deal_type == "block":
-            data = nse_block_deals()
-        else:
-            raise ValueError("Invalid deal type. Use 'bulk' or 'block'.")
-
+        if deal_type not in ["bulk_deals", "block_deals"]:
+            raise ValueError("Invalid deal type. Use 'bulk_deals' or 'block_deals'.")
+        data = nse_largedeals(deal_type)
         if data:
             df = pd.DataFrame(data)
             df.to_csv(local_filename, index=False)
@@ -220,45 +117,26 @@ def fetch_and_save_deals(deal_type, local_filename, sheet_tab_name):
     except Exception as e:
         print(f"❌ Error fetching {deal_type} deals: {e}")
 
-# --- 8. Main Execution ---
+# --- Main Execution ---
 if __name__ == "__main__":
-    # Log nsepython status
-    print(f"nsepython available: {NSEPYTHON_AVAILABLE}")
+    # Log nsepythonserver status
+    print(f"nsepythonserver available: {NSEPYTHON_AVAILABLE}")
 
-    # Fetch NSE Events (custom requests as nse_events is not available)
-    session = get_nse_session()
-    if session:
-        events = fetch_nse_events(session, from_date_str, to_date_str)
-        if events:
-            print("✅ NSE Events fetched successfully.")
-            save_events_to_csv(events)
-            df_events = pd.DataFrame(events)
-            upload_to_sheets(df_events, tab_name="NSE_Events")
-        else:
-            print("⚠️ No events found or fetch failed.")
-    else:
-        print("❌ Session creation failed. Skipping events.")
+    # Skip Events (no reliable API available)
+    print("⚠️ Corporate events not supported due to lack of API. Skipping.")
 
-    # Fetch FO Holidays (custom requests as nse_holidays is not available)
-    if session:
-        holidays = fetch_fo_holidays(session)
-        if holidays:
-            print("✅ FO Holidays fetched successfully.")
-            if isinstance(holidays, dict) and 'FO' in holidays:
-                holidays = holidays['FO']
-            for h in holidays:
-                for key in ['tradingDate', 'weekDay', 'description', 'morning_session', 'evening_session', 'Sr_no']:
-                    h.setdefault(key, '')
-            save_holidays_to_csv(holidays, filename="fo_holidays.csv")
-            df_holidays = pd.DataFrame(holidays)
-            upload_to_sheets(df_holidays, tab_name="FO_Holidays")
-        else:
-            print("⚠️ No FO Holidays found or fetch failed.")
+    # Fetch and Save Holidays
+    holidays = fetch_nse_holidays(year=2025)
+    if holidays:
+        print("✅ NSE Holidays fetched successfully.")
+        save_holidays_to_csv(holidays, filename="fo_holidays.csv")
+        df_holidays = pd.DataFrame(holidays)
+        upload_to_sheets(df_holidays, tab_name="FO_Holidays")
     else:
-        print("❌ Session creation failed. Skipping holidays.")
+        print("⚠️ No holidays found or fetch failed.")
 
     # Fetch and Upload Bulk Deals
-    fetch_and_save_deals("bulk", "bulk_deals.csv", "Bulk_Deals")
+    fetch_and_save_deals("bulk_deals", "bulk_deals.csv", "Bulk_Deals")
 
     # Fetch and Upload Block Deals
-    fetch_and_save_deals("block", "block_deals.csv", "Block_Deals")
+    fetch_and_save_deals("block_deals", "block_deals.csv", "Block_Deals")
