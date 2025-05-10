@@ -1,6 +1,8 @@
-gspread
-oauth2client
-pandas
-nsepython
-python-dotenv
-tenacity
+nsepythonserver>=0.0.9
+pandas-market-calendars>=4.1.0
+pandas>=1.5.0
+gspread>=5.7.0
+google-auth>=2.15.0
+requests>=2.28.0
+oauth2client>=4.1.3
+tenacity>=8.1.0
