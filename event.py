@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 import datetime as dt
 from tenacity import retry, stop_after_attempt, wait_fixed
 from pandas_market_calendars import get_calendar
+import requests
+from bs4 import BeautifulSoup
 
 # Try importing nsepythonserver
 try:
@@ -58,14 +60,14 @@ def fetch_nse_holidays(year=2025):
     try:
         nse_cal = get_calendar('XNSE')  # NSE calendar
         holidays = nse_cal.holidays().holidays
-        # Filter holidays for the specified year
-        holidays_year = [h for h in holidays if h.year == year]
+        # Convert numpy.datetime64 to datetime and filter for the specified year
+        holidays_year = [pd.Timestamp(h).to_pydatetime() for h in holidays if pd.Timestamp(h).year == year]
         # Convert to a list of dictionaries for consistency
         holiday_data = [
             {
                 'tradingDate': h.strftime('%d-%m-%Y'),
                 'weekDay': h.strftime('%A'),
-                'description': 'Holiday',  # Placeholder, as exact descriptions may vary
+                'description': 'Holiday',  # Placeholder
                 'morning_session': 'Closed',
                 'evening_session': 'Closed',
                 'Sr_no': idx + 1
@@ -97,11 +99,60 @@ def save_holidays_to_csv(fo_holidays, filename="fo_holidays.csv"):
             })
     print(f"✅ FO Holidays saved to '{filename}'")
 
+# --- Fallback: Fetch Bulk/Block Deals from Moneycontrol ---
+def fetch_moneycontrol_deals(deal_type, date_range=30):
+    try:
+        proxies = {
+            'http': os.getenv('HTTP_PROXY'),
+            'https': os.getenv('HTTPS_PROXY'),
+        } if os.getenv('HTTP_PROXY') or os.getenv('HTTPS_PROXY') else {}
+        url = f"https://www.moneycontrol.com/markets/indian-indices/large-deals"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br',
+        }
+        response = requests.get(url, headers=headers, proxies=proxies, timeout=15)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            # Placeholder: Parse table for bulk/block deals
+            # Note: Actual parsing depends on Moneycontrol's HTML structure
+            deals = []
+            tables = soup.find_all('table')
+            for table in tables:
+                rows = table.find_all('tr')[1:]  # Skip header
+                for row in rows:
+                    cols = row.find_all('td')
+                    if len(cols) >= 4:
+                        deals.append({
+                            'symbol': cols[0].text.strip(),
+                            'date': cols[1].text.strip(),
+                            'quantity': cols[2].text.strip(),
+                            'value': cols[3].text.strip()
+                        })
+            return deals
+        else:
+            print(f"❌ Moneycontrol request failed for {deal_type}. Status Code: {response.status_code}")
+            return None
+    except Exception as e:
+        print(f"❌ Error fetching {deal_type} from Moneycontrol: {e}")
+        return None
+
 # --- Fetch Bulk/Block Deals Using nsepythonserver ---
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def fetch_and_save_deals(deal_type, local_filename, sheet_tab_name):
     if not NSEPYTHON_AVAILABLE:
         print(f"❌ Cannot fetch {deal_type} deals: nsepythonserver module not available.")
+        print(f"🔄 Falling back to Moneycontrol for {deal_type}...")
+        data = fetch_moneycontrol_deals(deal_type)
+        if data:
+            df = pd.DataFrame(data)
+            df.to_csv(local_filename, index=False)
+            print(f"✅ Saved {deal_type} deals to {local_filename} (from Moneycontrol)")
+            upload_to_sheets(df, tab_name=sheet_tab_name)
+        else:
+            print(f"⚠️ No {deal_type} deal data fetched from Moneycontrol.")
         return
     try:
         if deal_type not in ["bulk_deals", "block_deals"]:
@@ -113,16 +164,33 @@ def fetch_and_save_deals(deal_type, local_filename, sheet_tab_name):
             print(f"✅ Saved {deal_type} deals to {local_filename}")
             upload_to_sheets(df, tab_name=sheet_tab_name)
         else:
-            print(f"⚠️ No {deal_type} deal data fetched.")
+            print(f"⚠️ No {deal_type} deal data fetched from nsepythonserver. Falling back to Moneycontrol...")
+            data = fetch_moneycontrol_deals(deal_type)
+            if data:
+                df = pd.DataFrame(data)
+                df.to_csv(local_filename, index=False)
+                print(f"✅ Saved {deal_type} deals to {local_filename} (from Moneycontrol)")
+                upload_to_sheets(df, tab_name=sheet_tab_name)
+            else:
+                print(f"⚠️ No {deal_type} deal data fetched from Moneycontrol.")
     except Exception as e:
-        print(f"❌ Error fetching {deal_type} deals: {e}")
+        print(f"❌ Error fetching {deal_type} deals from nsepythonserver: {e}")
+        print(f"🔄 Falling back to Moneycontrol for {deal_type}...")
+        data = fetch_moneycontrol_deals(deal_type)
+        if data:
+            df = pd.DataFrame(data)
+            df.to_csv(local_filename, index=False)
+            print(f"✅ Saved {deal_type} deals to {local_filename} (from Moneycontrol)")
+            upload_to_sheets(df, tab_name=sheet_tab_name)
+        else:
+            print(f"⚠️ No {deal_type} deal data fetched from Moneycontrol.")
 
 # --- Main Execution ---
 if __name__ == "__main__":
     # Log nsepythonserver status
     print(f"nsepythonserver available: {NSEPYTHON_AVAILABLE}")
 
-    # Skip Events (no reliable API available)
+    # Skip Events
     print("⚠️ Corporate events not supported due to lack of API. Skipping.")
 
     # Fetch and Save Holidays
