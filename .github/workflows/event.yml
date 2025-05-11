@@ -40,9 +40,11 @@ jobs:
       - name: Set up credentials file
         env:
           GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
+          PROXY_URL: ${{ secrets.PROXY_URL }}
         run: |
           echo "$GOOGLE_SHEETS_CREDENTIALS" > credentials.json
           echo "GOOGLE_SHEETS_CREDENTIALS_FILE=$(pwd)/credentials.json" >> $GITHUB_ENV
+          [ -n "$PROXY_URL" ] && echo "PROXY_URL=$PROXY_URL" >> $GITHUB_ENV || echo "No proxy URL set"
 
       # Run the script
       - name: Run event.py
