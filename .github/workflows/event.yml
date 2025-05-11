@@ -1,45 +1,48 @@
-name: Run event Script
+name: Run NSE Event Script
 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    # Run every day at 10 PM IST, Monday to Friday
-    - cron: '0 4 * * 1-5'  # This cron schedule runs at 9:30 PM UTC, which is 10:00 PM IST, Monday to Friday
-  workflow_dispatch:  # Allows manual trigger of the workflow
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+  workflow_dispatch:  # Allow manual trigger
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
+      # Install dependencies
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # Install dependencies from requirements.txt
+          python -m pip install --upgrade pip
+          pip install requests pandas gspread google-auth-oauthlib nsepython selenium webdriver-manager
 
-      - name: Run script
-        env:
-          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}  # Ensure this matches the secret's name in GitHub
-        run: python event.py  # Ensure the path to the script is correct
-
-      - name: Commit and push any modified .csv files
+      # Install Chrome and ChromeDriver
+      - name: Install Chrome
         run: |
-          # Add and commit all modified .csv files
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          
-          # Find all .csv files and add them to the commit
-          csv_files=$(find . -type f -name "*.csv")
-          
-          if [ -n "$csv_files" ]; then
-            git add $csv_files
-            git commit -m "Add or update CSV files"
-            git push
-          else
-            echo "No CSV files found. No changes to commit."
-          fi
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
+      # Set up environment variables
+      - name: Set environment variables
+        env:
+          GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
+        run: |
+          echo "GOOGLE_SHEETS_CREDENTIALS=$GOOGLE_SHEETS_CREDENTIALS" >> $GITHUB_ENV
+
+      # Run the script
+      - name: Run event.py
+        run: python event.py
