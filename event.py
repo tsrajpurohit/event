@@ -20,19 +20,28 @@ except ImportError:
     print("⚠️ nsepython not installed. Skipping nsepython-based fetch.")
 
 # --- Google Sheets Setup ---
-credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
+def load_credentials():
+    creds_file = os.getenv('GOOGLE_SHEETS_CREDENTIALS_FILE')
+    if creds_file and os.path.exists(creds_file):
+        with open(creds_file, 'r') as f:
+            return json.load(f)
+    creds_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
+    if not creds_json:
+        raise ValueError("GOOGLE_SHEETS_CREDENTIALS or GOOGLE_SHEETS_CREDENTIALS_FILE environment variable is not set.")
+    return json.loads(creds_json)
+
 SHEET_ID = "1IUChF0UFKMqVLxTI69lXBi-g48f-oTYqI1K9miipKgY"
-
-if not credentials_json:
-    raise ValueError("GOOGLE_SHEETS_CREDENTIALS environment variable is not set.")
-
-credentials_info = json.loads(credentials_json)
-credentials = Credentials.from_service_account_info(
-    credentials_info,
-    scopes=["https://www.googleapis.com/auth/spreadsheets"]
-)
-client = gspread.authorize(credentials)
-sheet = client.open_by_key(SHEET_ID)
+try:
+    credentials_info = load_credentials()
+    credentials = Credentials.from_service_account_info(
+        credentials_info,
+        scopes=["https://www.googleapis.com/auth/spreadsheets"]
+    )
+    client = gspread.authorize(credentials)
+    sheet = client.open_by_key(SHEET_ID)
+except Exception as e:
+    print(f"❌ Failed to initialize Google Sheets client: {e}")
+    raise
 
 def upload_to_sheets(df, tab_name):
     try:
@@ -60,7 +69,7 @@ def get_nse_session_selenium():
         
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         driver.get("https://www.nseindia.com/")
-        time.sleep(5)
+        time.sleep(5)  # Wait for page to load and cookies to be set
         cookies = driver.get_cookies()
         print("✅ Cookies obtained via Selenium:", cookies)
         
@@ -84,7 +93,12 @@ def get_nse_session_requests():
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'Accept-Language': 'en-US,en;q=0.9',
-STONE, 'Sec-Fetch-Site': 'none',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
         'Sec-Fetch-User': '?1',
         'Cache-Control': 'max-age=0',
         'Referer': 'https://www.google.com/',
