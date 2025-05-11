@@ -36,12 +36,13 @@ jobs:
           sudo apt-get install -y google-chrome-stable
           google-chrome --version
 
-      # Set up environment variables
-      - name: Set environment variables
+      # Write GOOGLE_SHEETS_CREDENTIALS to a file
+      - name: Set up credentials file
         env:
           GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
         run: |
-          echo "GOOGLE_SHEETS_CREDENTIALS=$GOOGLE_SHEETS_CREDENTIALS" >> $GITHUB_ENV
+          echo "$GOOGLE_SHEETS_CREDENTIALS" > credentials.json
+          echo "GOOGLE_SHEETS_CREDENTIALS_FILE=$(pwd)/credentials.json" >> $GITHUB_ENV
 
       # Run the script
       - name: Run event.py
