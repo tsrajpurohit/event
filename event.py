@@ -6,7 +6,7 @@ from google.oauth2.service_account import Credentials
 import os
 import json
 
-# Google Sheets setup (from your code)
+# --- Google Sheets Setup (from your original code) ---
 credentials_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
 SHEET_ID = "1IUChF0UFKMqVLxTI69lXBi-g48f-oTYqI1K9miipKgY"
 
@@ -34,21 +34,25 @@ def upload_to_sheets(df, tab_name):
     except Exception as e:
         print(f"❌ Google Sheet error for {tab_name}: {e}")
 
+# --- NSE Session and Cookie Management ---
 def get_nse_session():
     session = requests.Session()
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
         'Connection': 'keep-alive',
         'Referer': 'https://www.nseindia.com/',
     }
 
     try:
+        # Visit the NSE homepage to get fresh cookies
         url = "https://www.nseindia.com/"
         response = session.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             print("✅ Accessed NSE homepage and obtained cookies.")
+            print(f"Cookies: {session.cookies.get_dict()}")
             return session
         else:
             print(f"❌ Failed to access NSE homepage. Status Code: {response.status_code}")
@@ -57,6 +61,7 @@ def get_nse_session():
         print(f"❌ Error occurred: {e}")
         return None
 
+# --- Fetch Pre-Open Market Data ---
 def fetch_pre_open_data(session):
     url = "https://www.nseindia.com/api/market-data-pre-open?key=FO"
     headers = {
@@ -70,6 +75,7 @@ def fetch_pre_open_data(session):
 
     try:
         time.sleep(1)  # Avoid rate limiting
+        # Cookies are automatically included via the session
         response = session.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             print("✅ Pre-open data fetched successfully.")
@@ -82,16 +88,24 @@ def fetch_pre_open_data(session):
         print(f"❌ Error occurred: {e}")
         return None
 
-# Main execution
+# --- Main Execution ---
 if __name__ == "__main__":
+    # Get session with fresh cookies
     session = get_nse_session()
     if session:
+        # Fetch pre-open data
         pre_open_data = fetch_pre_open_data(session)
         if pre_open_data:
             # Convert to DataFrame (adjust based on API response structure)
             df_pre_open = pd.DataFrame(pre_open_data.get('data', []))
-            print(df_pre_open)
-            # Upload to Google Sheets
-            upload_to_sheets(df_pre_open, tab_name="Pre_Open_Data")
+            if not df_pre_open.empty:
+                print("Pre-open data sample:")
+                print(df_pre_open.head())
+                # Upload to Google Sheets
+                upload_to_sheets(df_pre_open, tab_name="Pre_Open_Data")
+            else:
+                print("⚠️ Pre-open data is empty.")
         else:
-            print("⚠️ No pre-open data fetched.")
+            print("⚠️ Failed to fetch pre-open data.")
+    else:
+        print("⚠️ Failed to initialize NSE session.")
