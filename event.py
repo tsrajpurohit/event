@@ -23,12 +23,26 @@ except ImportError:
 def load_credentials():
     creds_file = os.getenv('GOOGLE_SHEETS_CREDENTIALS_FILE')
     if creds_file and os.path.exists(creds_file):
-        with open(creds_file, 'r') as f:
-            return json.load(f)
+        try:
+            with open(creds_file, 'r') as f:
+                content = f.read().strip()
+                if not content:
+                    raise ValueError("Credentials file is empty")
+                return json.loads(content)
+        except json.JSONDecodeError as e:
+            print(f"❌ Failed to parse credentials file: {e}")
+            raise
+        except Exception as e:
+            print(f"❌ Error reading credentials file: {e}")
+            raise
     creds_json = os.getenv('GOOGLE_SHEETS_CREDENTIALS')
-    if not creds_json:
-        raise ValueError("GOOGLE_SHEETS_CREDENTIALS or GOOGLE_SHEETS_CREDENTIALS_FILE environment variable is not set.")
-    return json.loads(creds_json)
+    if not creds_json or not creds_json.strip():
+        raise ValueError("GOOGLE_SHEETS_CREDENTIALS environment variable is empty or not set")
+    try:
+        return json.loads(creds_json)
+    except json.JSONDecodeError as e:
+        print(f"❌ Failed to parse GOOGLE_SHEETS_CREDENTIALS: {e}")
+        raise
 
 SHEET_ID = "1IUChF0UFKMqVLxTI69lXBi-g48f-oTYqI1K9miipKgY"
 try:
@@ -66,12 +80,25 @@ def get_nse_session_selenium():
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--window-size=1920,1080")
         options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        proxy_url = os.getenv('PROXY_URL')
+        if proxy_url:
+            options.add_argument(f"--proxy-server={proxy_url}")
         
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver.execute_cdp_cmd("Network.setExtraHTTPHeaders", {
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+            "Referer": "https://www.google.com/",
+        })
         driver.get("https://www.nseindia.com/")
-        time.sleep(5)  # Wait for page to load and cookies to be set
+        time.sleep(10)
         cookies = driver.get_cookies()
         print("✅ Cookies obtained via Selenium:", cookies)
+        
+        if not any(cookie['name'] in ['nsit', 'nseappid', 'ak_bmsc'] for cookie in cookies):
+            print("⚠️ Required cookies (nsit, nseappid, ak_bmsc) not found. Page source:", driver.page_source[:500])
         
         session = requests.Session()
         for cookie in cookies:
@@ -90,7 +117,7 @@ def get_nse_session_requests():
     session.mount('https://', HTTPAdapter(max_retries=retries))
     
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/37.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'Accept-Language': 'en-US,en;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -140,16 +167,22 @@ def fetch_pre_open_data(session):
     url = "https://www.nseindia.com/api/market-data-pre-open?key=FO"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
-        'Accept': 'application/json',
+        'Accept': 'application/json, text/plain, */*',
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'en-US,en;q=0.9',
         'Referer': 'https://www.nseindia.com/market-data/pre-open-market-cm-and-fo-segment',
         'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
     }
 
     try:
         time.sleep(2)
         response = session.get(url, headers=headers, timeout=15)
+        print(f"API request cookies: {session.cookies.get_dict()}")
         if response.status_code == 200:
             print("✅ Pre-open data fetched successfully.")
             return response.json()
