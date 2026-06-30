@@ -3,7 +3,7 @@ name: Run bulblock-6M Script
 on:
   schedule:
     # Run every day at 10 PM IST, Monday to Friday
-    - cron: '0 4 * * 1-5'  # This cron schedule runs at 9:30 PM UTC, which is 10:00 PM IST, Monday to Friday
+    - cron: '0 4 * * 6'  # This cron schedule runs at  only Saturday
   workflow_dispatch:  # Allows manual trigger of the workflow
 
 jobs:
